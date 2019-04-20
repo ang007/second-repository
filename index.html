@@ -1,0 +1,254 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GAME</title>
+    <script src="jq/jquery-3.3.1.min.js"></script>
+    <style>
+        *,*:after,*::before{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body{
+            background-color: whitesmoke;
+        }
+        .box{
+            width: 160px;
+            min-height: 200px;
+/*            border: 1px solid red;*/
+            position: absolute;
+        }
+        .box:nth-of-type(1)
+        {
+            top: 15% ;   
+            left: 30%;    
+        }
+        .box:nth-of-type(2)
+        {
+            top: 15% ;   
+            left:60%;    
+        }
+        .box:nth-of-type(3)
+        {
+            top: 55% ;   
+            left: 30%;    
+        }
+        .box:nth-of-type(4)
+        {
+            top: 55% ;   
+            left: 60%;    
+        }
+        
+        label{
+            padding: 5px;
+/*            border: 1px solid red;*/
+            height: 30px;
+            position: absolute;
+        }
+        .label{
+            right: 0;
+            top: 0;
+            
+        }
+        .message{
+            display: none;
+            right: 0;
+            top: 30;
+        }
+        button{
+            padding: 10px;
+            box-shadow: 1px 0px 5px gray;
+        }
+        button:hover{
+            box-shadow: none;
+        }
+        img{
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            max-height: 80%;
+/*            border: 1px solid blue;*/
+        }
+        #navtop{
+            width: 100%;
+            height: 100px;
+            box-shadow: 0 1px 5px gray;
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+        #income{
+            line-height: 30px;
+            width: 140px;
+            height: 40px;
+            margin: 30px 0;
+            margin-left: calc(50% - 25px);
+        }
+        .level1{
+            display: none;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(173, 216, 230, 0.55);
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        .level1>img{
+            position: absolute;
+            left: 35%;
+            top: 40%;
+            width: 30%;
+            height: 30%;
+        }
+        .level1>span{
+            position: absolute;
+            top: 20%;
+            left: 40%;
+            color: gold;
+            font-size: 40px;
+        }
+        .poor{
+            display: none;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(173, 216, 230, 0.55);
+            position: fixed;
+            top: 0;
+            left: 0;
+        }
+        .poor>img{
+            position: absolute;
+            left: 35%;
+            top: 40%;
+            width: 30%;
+            height: 30%;
+        }
+        .poor>span{
+            position: absolute;
+            top: 20%;
+            left: 40%;
+            color: gold;
+            font-size: 40px;
+        }
+    </style>
+    
+</head>
+<body>
+    
+    <nav id="navtop">
+        <label id="income" for="">income: </label>
+    </nav>
+    <div class="box">
+       <button class="btn">buy</button>
+        <label for="" class="label">cost is ...$</label>
+        <label class="message" for=""></label>
+        <img class="img" src="img/image.png" alt="">
+    </div>
+    <div class="box">
+       <button class="btn">buy</button>
+        <label for="" class="label">cost is ...$</label>
+        <label class="message" for=""></label>
+        <img class="img" src="img/1formp.png" alt="">
+    </div>
+    <div class="box">
+       <button class="btn">buy</button>
+        <label for="" class="label">cost is ...$</label>
+        <label class="message" for=""></label>
+        <img class="img" src="img/3fromp.jpg" alt="">
+    </div>    
+    <div class="box">
+       <button class="btn">buy</button>
+        <label for="" class="label">cost is ...$</label>
+        <label class="message" for=""></label>
+        <img class="img" src="img/2fromp.png" alt="">
+    </div>    
+    <div class="level1">
+        <img src="img/clipart52158.png" alt="">
+        <span>$ end level 1 $</span>
+    </div>
+    
+    <div class="poor">
+        <img src="img/poor.png" alt="">
+        <span>$ you failed $</span>
+    </div>
+    <script>
+            var price;          
+            var income=300;
+            var profit;
+            var priceold;
+        
+    $(function(){
+         
+        $('#income').text('income is: '+income+' $');
+        
+        $('.btn').click(function(){
+            
+            var buy='buy';
+            var sell='sell';
+            price=Number($(this).siblings('.label').text());
+
+
+            
+            
+            if($(this).text()==buy && income>=price)
+                {
+                    priceold= price;
+                    $(this).text('sell');
+                    $(this).parent().css('height','215px');
+                    $(this).siblings('.message').css('display','block');
+                    $(this).siblings('.message').text('you pay '+priceold+' $');
+                    income -= priceold;
+                    $('#income').text('income is: '+income+' $')
+                }
+            else if($(this).text()==sell)
+                {   
+                    profit=price - priceold;  
+                    $(this).text(buy);
+                    $(this).siblings('.message').css('display','none');
+                    income += profit;
+                    if(income<=0){
+                        $('.poor').css('display','block');
+                        $('.poor').click(function(){
+                            $('.poor').css('display','none');
+                            location.reload();//if your income be less than 0$
+                        })
+                    }
+                    if(income>1200)
+                    {
+                        $('.level1').css('display','block');
+                        $('.level1').click(function(){
+                            $('.level1').css('display','none');
+                            location.reload();//if your income be more than 1000$
+                            
+                        })
+                        
+                        
+                    }
+                    $('#income').text('income is: '+income+' $');
+                }
+
+            
+            
+                });
+        $('#income').text('income is: '+income+' $');
+
+        setInterval(function(){pr()} ,2000)
+        function pr(){
+            var x=new Array();
+            for(var i=1;i<=4;i++){
+                price = Math.floor(Math.random()*1000)
+                x[i-1]=price;
+                $('.box:nth-of-type(' + i + ')>.label').text(x[i-1]);
+                
+            }
+            
+        }
+        
+
+        });
+
+    </script>
+    
+</body>
+</html>
