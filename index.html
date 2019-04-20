@@ -25,25 +25,28 @@
         }
         .box:nth-of-type(2)
         {
-            top: 15% ;   
-            left:60%;    
+            top: 25% ;   
+            left:43%;    
         }
         .box:nth-of-type(3)
         {
-            top: 55% ;   
-            left: 30%;    
+            top: 36% ;   
+            left: 55%;    
         }
+/*
         .box:nth-of-type(4)
         {
             top: 55% ;   
             left: 60%;    
         }
+*/
         
         label{
             padding: 5px;
 /*            border: 1px solid red;*/
             height: 30px;
             position: absolute;
+            background: rgba(255, 255, 255, 0.3);
         }
         .label{
             right: 0;
@@ -131,7 +134,28 @@
             color: gold;
             font-size: 40px;
         }
+        .bg{
+            background-image: url(img/free-seamless-grass-texture-26.jpg);
+            background-size: 40% 40%;
+            background-repeat: repeat;
+            height: calc(100% - 100px);
+            width: 100%;
+        }
+        .road{
+            position: absolute;
+            top: 49%;
+            left: 24%;
+            background-image: url(img/kisspng-road.jpg);
+            width: 545px;
+            height: 50px;
+            background-repeat: repeat-x;
+            transform-origin: top;
+            perspective: 1000px;
+            transform: rotateX(72deg) rotateZ(58deg);
+            
+        }
     </style>
+    
     
 </head>
 <body>
@@ -139,35 +163,40 @@
     <nav id="navtop">
         <label id="income" for="">income: </label>
     </nav>
-    <div class="box">
-       <button class="btn">buy</button>
-        <label for="" class="label">cost is ...$</label>
-        <label class="message" for=""></label>
-        <img class="img" src="img/image.png" alt="">
-    </div>
-    <div class="box">
-       <button class="btn">buy</button>
-        <label for="" class="label">cost is ...$</label>
-        <label class="message" for=""></label>
-        <img class="img" src="img/1formp.png" alt="">
-    </div>
-    <div class="box">
-       <button class="btn">buy</button>
-        <label for="" class="label">cost is ...$</label>
-        <label class="message" for=""></label>
-        <img class="img" src="img/3fromp.jpg" alt="">
-    </div>    
-    <div class="box">
-       <button class="btn">buy</button>
-        <label for="" class="label">cost is ...$</label>
-        <label class="message" for=""></label>
-        <img class="img" src="img/2fromp.png" alt="">
-    </div>    
-    <div class="level1">
-        <img src="img/clipart52158.png" alt="">
-        <span>$ end level 1 $</span>
-    </div>
+        <div class="road"></div>
+    <div class="bg">
+        <div class="box">
+           <button class="btn">buy</button>
+            <label for="" class="label">cost is ...$</label>
+            <label class="message" for=""></label>
+            <img class="img" src="img/image.png" alt="">
+        </div>
+        <div class="box">
+           <button class="btn">buy</button>
+            <label for="" class="label">cost is ...$</label>
+            <label class="message" for=""></label>
+            <img class="img" src="img/1formp.png" alt="">
+        </div>
+        <div class="box">
+           <button class="btn">buy</button>
+            <label for="" class="label">cost is ...$</label>
+            <label class="message" for=""></label>
+            <img class="img" src="img/2fromp.png" alt="">
+        </div>    
+<!--
+        <div class="box">
+           <button class="btn">buy</button>
+            <label for="" class="label">cost is ...$</label>
+            <label class="message" for=""></label>
+            <img class="img" src="img/2fromp.png" alt="">
+        </div>    
+-->
+        <div class="level1">
+            <img src="img/clipart52158.png" alt="">
+            <span>$ end level 1 $</span>
+        </div>
     
+    </div>
     <div class="poor">
         <img src="img/poor.png" alt="">
         <span>$ you failed $</span>
